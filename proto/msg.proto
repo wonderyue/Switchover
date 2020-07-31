@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "com.yue";
+
+message Packet {
+  enum Type {
+    JOIN = 0;
+    LEAVE = 1;
+    MULTICAST_TUNNELING = 2; // source -> rp
+    MULTICAST_FLOODING = 3; // rp -> subscribers
+    PRUNE = 4;
+    REVERSE_TUNNELING = 5;
+  }
+
+  Type type = 1;
+  int32 srcId = 2;
+  int32 dstId = 3;
+  string content = 4;
+  map<string, string> extra = 5;
+  string debugInfo = 6;
+}
